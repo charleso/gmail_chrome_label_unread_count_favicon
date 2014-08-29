@@ -6,13 +6,13 @@ function init_update_owa_chrome_tab() {
         domain = window.location.href,
         owa_location = 'owa/#path=/mail';
 
-    if (domain )
-
-    if (first_run) {
-        update_owa_chrome_tab();
-        first_run = true;
+    if (domain.indexOf(owa_location) > -1) {
+        if (first_run) {
+            update_owa_chrome_tab();
+            first_run = true;
+        }
+        setInterval(update_owa_chrome_tab, 5000);
     }
-    setInterval(update_owa_chrome_tab, 10000);
 }
 
 function update_owa_chrome_tab() {
@@ -28,10 +28,10 @@ function update_owa_chrome_tab() {
         icon_url = icon_url + inbox_count + '.png'
     }
 
-    console.log(icon_url);
-
+    if (!inbox_count) {
+        icon_url = icon_url + '0.png'
+    }
     $('link[rel="shortcut icon"]').attr('href', icon_url);
-
 }
 
 init_update_owa_chrome_tab();
