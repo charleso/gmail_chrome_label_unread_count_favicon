@@ -2,7 +2,11 @@ console.log('Running OWA Extension');
 
 
 function init_update_owa_chrome_tab() {
-    var first_run = false;
+    var first_run = false,
+        domain = window.location.href,
+        owa_location = 'owa/#path=/mail';
+
+    if (domain )
 
     if (first_run) {
         update_owa_chrome_tab();
@@ -13,18 +17,20 @@ function init_update_owa_chrome_tab() {
 
 function update_owa_chrome_tab() {
     var url = "EMAIL_DOMAIN_NAME",
-        icon_url = "",
-        domain = window.location.href,
-        inbox_link = $('._n_66'),
+        icon_url = "https://raw.githubusercontent.com/jhanifen/owa_chrome_tab_notification/master/icons/icon_",
         inbox_count = $('._n_66').text();
 
-    console.log(window.location);
-    console.log(inbox_link, inbox_count);
-    console.log(inbox_link.text());
-    console.log(inbox_link.val());
-
     $(document).prop('title', 'UA Mail - ' + inbox_count) ;
-    $('link[rel="shortcut icon"]').attr('href', 'URL_TO_IMAGE');
+
+    if (inbox_count > 9) {
+        icon_url = icon_url + 'plus.png';
+    } else {
+        icon_url = icon_url + inbox_count + '.png'
+    }
+
+    console.log(icon_url);
+
+    $('link[rel="shortcut icon"]').attr('href', icon_url);
 
 }
 
