@@ -1,7 +1,7 @@
 function init_update_owa_chrome_tab() {
     var first_run = false,
         domain = window.location.href,
-        owa_location = 'owa/#path=/mail';
+        owa_location = 'webmail';
 
     if (domain.indexOf(owa_location) > -1) {
         if (first_run) {
