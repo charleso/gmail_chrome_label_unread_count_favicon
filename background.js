@@ -17,7 +17,7 @@ function update_owa_chrome_tab() {
         icon_url = "https://raw.githubusercontent.com/jhanifen/owa_chrome_tab_notification/master/icons/icon_",
         inbox_count = $('._n_66').text();
 
-    $(document).prop('title', 'UA Mail - ' + inbox_count) ;
+    $(document).prop('title', 'Web Mail - ' + inbox_count) ;
 
     if (!inbox_count) {
         icon_url = icon_url + '0.png'
