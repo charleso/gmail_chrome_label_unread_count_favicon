@@ -1,6 +1,3 @@
-console.log('Running OWA Extension');
-
-
 function init_update_owa_chrome_tab() {
     var first_run = false,
         domain = window.location.href,
@@ -22,15 +19,16 @@ function update_owa_chrome_tab() {
 
     $(document).prop('title', 'UA Mail - ' + inbox_count) ;
 
-    if (inbox_count > 9) {
-        icon_url = icon_url + 'plus.png';
-    } else {
-        icon_url = icon_url + inbox_count + '.png'
-    }
-
     if (!inbox_count) {
         icon_url = icon_url + '0.png'
+    } else {
+        if (inbox_count > 9) {
+            icon_url = icon_url + 'plus.png';
+        } else {
+            icon_url = icon_url + inbox_count + '.png'
+        }
     }
+
     $('link[rel="shortcut icon"]').attr('href', icon_url);
 }
 
