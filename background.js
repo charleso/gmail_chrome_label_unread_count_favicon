@@ -13,14 +13,10 @@ function init_update_owa_chrome_tab() {
 }
 
 function update_owa_chrome_tab() {
-    console.log('updating owa tab');
 
     var url = "EMAIL_DOMAIN_NAME",
         icon_url = "https://raw.githubusercontent.com/jhanifen/owa_chrome_tab_notification/master/icons/icon_",
         inbox_count = $('._n_d6').text();
-
-
-    console.log('inbox count' + inbox_count);
 
     $(document).prop('title', 'Web Mail - ' + inbox_count) ;
 
