@@ -12,7 +12,7 @@ function update_gmail_chrome_tab() {
     // eg. label/Review/FMfcgxwDrtxzBQSQRSgfMtQMftxhwchQ
     var label = hash.split('/')[1];
     var count = $("[data-tooltip='" + label + "'] .bsU").text();
-    count = count.length == 0 ? 0 : count;
+    count = count.length == 0 ? 0 : (count < 20 ? count : "20+");
     var icon_url = "https://ssl.gstatic.com/ui/v1/icons/mail/images/2/unreadcountfavicon/" + count + "_2x.png";
     $(document).prop('title', 'Inbox - ' + count) ;
     $('link[rel="icon"]').attr('href', icon_url);
