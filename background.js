@@ -8,7 +8,9 @@ function init_update_gmail_chrome_tab() {
 function update_gmail_chrome_tab() {
   var hash = window.location.hash;
   if (hash.startsWith("#label/")) {
-    var label = hash.replace("#label/", "")
+    // eg. label/Review
+    // eg. label/Review/FMfcgxwDrtxzBQSQRSgfMtQMftxhwchQ
+    var label = hash.split('/')[1];
     var count = $("[data-tooltip='" + label + "'] .bsU").text();
     count = count.length == 0 ? 0 : count;
     var icon_url = "https://ssl.gstatic.com/ui/v1/icons/mail/images/2/unreadcountfavicon/" + count + "_2x.png";
