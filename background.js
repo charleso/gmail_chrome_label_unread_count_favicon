@@ -1,36 +1,19 @@
-function init_update_owa_chrome_tab() {
-    var first_run = false,
-        domain = window.location.href,
-        owa_location = '/owa';
-
-    if (domain.indexOf(owa_location) > -1) {
-        if (first_run) {
-            update_owa_chrome_tab();
-            first_run = true;
-        }
-        setInterval(update_owa_chrome_tab, 5000);
-    }
+function init_update_gmail_chrome_tab() {
+  if (window.location.host == "mail.google.com" && window.location.pathname.startsWith('/mail/')) {
+    update_gmail_chrome_tab();
+    setInterval(update_gmail_chrome_tab, 5000);
+  }
 }
 
-function update_owa_chrome_tab() {
-
-    var url = "EMAIL_DOMAIN_NAME",
-        icon_url = "https://raw.githubusercontent.com/jhanifen/owa_chrome_tab_notification/master/icons/icon_",
-        inbox_count = $('._n_X6').find('._n_17').eq(1).text()
-
-    $(document).prop('title', 'Web Mail - ' + inbox_count) ;
-
-    if (!inbox_count) {
-        icon_url = icon_url + '0.png'
-    } else {
-        if (inbox_count > 9) {
-            icon_url = icon_url + 'plus.png';
-        } else {
-            icon_url = icon_url + inbox_count + '.png'
-        }
-    }
-
-    $('link[rel="shortcut icon"]').attr('href', icon_url);
+function update_gmail_chrome_tab() {
+  var hash = window.location.hash;
+  if (hash.startsWith("#label/")) {
+    var label = hash.replace("#label/", "")
+    var count = $("[data-tooltip='" + label + "'] .bsU").text();
+    var icon_url = "https://ssl.gstatic.com/ui/v1/icons/mail/images/2/unreadcountfavicon/" + count + "_2x.png";
+    $(document).prop('title', 'Inbox - ' + count) ;
+    $('link[rel="icon"]').attr('href', icon_url);
+  }
 }
 
-init_update_owa_chrome_tab();
+init_update_gmail_chrome_tab();
